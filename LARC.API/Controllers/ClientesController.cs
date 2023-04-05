@@ -1,6 +1,7 @@
 ﻿using LARC.Domain.Domain;
 using LARC.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LARC.API.Controllers
 {
@@ -26,6 +27,8 @@ namespace LARC.API.Controllers
             try
             {
                 var listaClientes = await _clienteService.GetAll();
+                _log.LogInformation($"Clientes encontrados {JsonConvert.SerializeObject(listaClientes)}");
+
                 return Ok(listaClientes);
             }
             catch (Exception ex)
@@ -38,7 +41,7 @@ namespace LARC.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCliente(Cliente cliente)
         {
-            _log.LogInformation("Controller AddCliente");
+            _log.LogInformation($"Controller AddCliente {JsonConvert.SerializeObject(cliente)}");
 
             try
             {

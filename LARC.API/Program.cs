@@ -1,3 +1,4 @@
+using AE.API.Config;
 using LARC.Data.Repositories;
 using LARC.Domain.Interfaces.Repositories;
 using LARC.Domain.Interfaces.Services;
@@ -6,6 +7,7 @@ using LARC.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+SerilogConfig.AddSerilog(builder);
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 

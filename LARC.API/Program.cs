@@ -1,9 +1,13 @@
 using LARC.Data.Repositories;
 using LARC.Domain.Interfaces.Repositories;
 using LARC.Domain.Interfaces.Services;
+using LARC.Domain.Settings;
 using LARC.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDbSettings"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

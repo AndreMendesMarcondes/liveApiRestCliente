@@ -1,4 +1,5 @@
-﻿using LARC.Domain.Interfaces.Services;
+﻿using LARC.Domain.Domain;
+using LARC.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LARC.API.Controllers
@@ -20,7 +21,35 @@ namespace LARC.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {
-            return Ok("teste cliente");
+            _log.LogInformation("Controller getclientes");
+
+            try
+            {
+                var listaClientes = await _clienteService.GetAll();
+                return Ok(listaClientes);
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex, "Erro ao chamar controller getclientes");
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCliente(Cliente cliente)
+        {
+            _log.LogInformation("Controller AddCliente");
+
+            try
+            {
+                await _clienteService.Add(cliente);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex, "Erro ao chamar controller AddCliente");
+                throw;
+            }
         }
     }
 }

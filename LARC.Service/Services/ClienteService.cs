@@ -10,7 +10,7 @@ namespace LARC.Service.Services
         private readonly ILogger<ClienteService> _log;
         private readonly IClienteRepository _clienteRepository;
 
-        public ClienteService(ILogger<ClienteService> log, 
+        public ClienteService(ILogger<ClienteService> log,
                               IClienteRepository clienteRepository)
         {
             _log = log;
@@ -38,7 +38,7 @@ namespace LARC.Service.Services
 
             try
             {
-                var listaClientes =  await _clienteRepository.GetAll();
+                var listaClientes = await _clienteRepository.GetAll();
                 return listaClientes;
             }
             catch (Exception ex)

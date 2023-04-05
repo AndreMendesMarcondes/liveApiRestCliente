@@ -2,7 +2,7 @@
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 
-namespace AE.API.Config
+namespace LARC.API.Config
 {
     public static class SerilogConfig
     {
